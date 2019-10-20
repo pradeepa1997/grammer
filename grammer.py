@@ -6,16 +6,11 @@ class Grammar:
         self.dictionary=dict()
         self.rand_nm_gen=random.Random(seed)
 
-
-
-
     def rule(self,left,right):
-
         if left in self.dictionary:
             self.dictionary[left]=self.dictionary[left]+(rule.Rule(left,right),)
         else:
             self.dictionary[left]=(rule.Rule(left,right),)
-
 
     def generate(self):
         if "Start" in self.dictionary:
@@ -35,12 +30,30 @@ class Grammar:
         return result
 
 
-
     def select(self,left):
         
         rules=self.dictionary[left]
         total=0
-        for i in rules:
-            total=total+1
+        choose=None
+        
+        for rule in rules:
+            total=total+rule.count
+            
         index=self.rand_nm_gen.choose(total)
-        return rules[index].right
+        
+        for rule in rules:
+            index=index-rule.count
+            if index <=0:
+                chosen=rule
+                break
+            
+        for rule in rules:
+            if chosen!=rule:
+                rule.count=rule.count+1
+        
+        return chosen.right
+
+
+
+
+    

@@ -1,6 +1,5 @@
 import math
 
-
 class Random:
 
     def __init__(self, seed):
@@ -17,7 +16,6 @@ class Random:
         a = self.m_min
         m= self.m_max
         self.no = (16807*self.no)%(2147483648-1)
-        # print(self.no)
         return self.no
 
     def choose(self, limit):
@@ -26,16 +24,6 @@ class Random:
         # print(new_no)
         return new_no
 
-
-# a=random(10)
-# print(a.next())
-# a.choose(10)
-
-# print(a.next())
-# a.choose(10)
-
-# print(a.next())
-# a.choose(10)
 
 
 
